@@ -30,5 +30,4 @@ push-dev:
     - docker tag samfashion-manerger www.mscreativestyle.com/samfashion/samfashion-manerger
     - docker push www.mscreativestyle.com/samfashion/samfashion-manerger
   after_script:
-    - docker rmi samfashion-manerger
     - docker images
