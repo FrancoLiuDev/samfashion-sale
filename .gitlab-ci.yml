@@ -31,3 +31,13 @@ push-dev:
 
   after_script:
     - docker images
+
+
+deploy-dev:
+  stage: deploy
+  only:
+    - deploy-dev
+  script:
+    - sudo apt-get install sshpass
+    - sudo sshpass ssh -o StrictHostKeyChecking=no -i ~/.ssh/google.pem franco@192.168.2.215 bash dev.sh
+
