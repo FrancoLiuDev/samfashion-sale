@@ -5,10 +5,11 @@ stages:
   - deploy
 
 build-dev:
+  image: docker:latest
   stage: build
   script:
     - tar -czvf tmp.tgz *
     - sudo docker build -t samfashion-manerger .
   only:
-      - deploy-dev
+    - deploy-dev
  
