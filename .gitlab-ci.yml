@@ -27,7 +27,6 @@ push-dev:
     - deploy-dev
   script:
     - docker login -u $DOCKER_USER -p $DOCKER_PASS www.mscreativestyle.com
-    - docker tag samfashion-manerger www.mscreativestyle.com/samfashion/samfashion-manerger
-    - docker push www.mscreativestyle.com/samfashion/samfashion-manerger
+    - docker tag samfashion-manerger localhost:5000/samfashion/samfashion-manerger
   after_script:
     - docker images
