@@ -1,0 +1,14 @@
+stages:
+  - build
+  - clear
+  - push
+  - deploy
+
+build-dev:
+  stage: build
+  script:
+    - tar -czvf tmp.tgz *
+    - sudo docker build -t samfashion-manerger .
+  only:
+      - deploy-dev
+ 
