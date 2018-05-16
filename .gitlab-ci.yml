@@ -12,4 +12,23 @@ build-dev:
     - docker build -t samfashion-manerger .
   only:
     - deploy-dev
- 
+
+clear-dev:
+  stage: clear
+  only:
+    - deploy-dev
+  script:
+    - sudo docker rmi www.mscreativestyle.com/samfashion/samfashion-manerger
+  allow_failure: true
+
+push-dev:
+  stage: push
+  only:
+    - deploy-dev
+  script:
+    - sudo docker login -u $DOCKER_USER -p $DOCKER_PASS www.mscreativestyle.com
+    - sudo docker tag samfashion-manerger www.mscreativestyle.com/samfashion/samfashion-manerger
+    - sudo docker push www.mscreativestyle.com/samfashion/samfashion-manerger
+  after_script:
+    - sudo docker rmi samfashion-manerger
+    - sudo docker images
