@@ -27,5 +27,7 @@ push-dev:
     - deploy-dev
   script:
     - docker tag samfashion-manerger localhost:5000/samfashion/samfashion-manerger
+    - docker push localhost:5000/samfashion/samfashion-manerger
+
   after_script:
     - docker images
