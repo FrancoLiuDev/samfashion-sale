@@ -41,5 +41,5 @@ deploy-dev:
   script:
     - apt-get update
     - apt-get install sshpass
-    - sshpass ssh -o StrictHostKeyChecking=no -i ~/.ssh/google.pem franco@192.168.2.215 bash dev.sh
+    - sshpass ssh -o StrictHostKeyChecking=no -i ~/.ssh/google.pem franco@192.168.2.215
 
