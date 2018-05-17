@@ -39,7 +39,7 @@ deploy-dev:
   only:
     - deploy-dev
   script:
-    - ssh -i ~/.ssh/google.pem franco@35.231.99.193 bash dev.sh
+    - ssh -i /etc/ssh/google.pem franco@35.231.99.193 bash dev.sh
      
    
 
