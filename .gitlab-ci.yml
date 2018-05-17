@@ -34,7 +34,7 @@ push-dev:
 
 
 deploy-dev:
-  image: ubuntu:latest
+  image: 104.199.192.37:5000/sshrunner:latest
   stage: deploy
   only:
     - deploy-dev
