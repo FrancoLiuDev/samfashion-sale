@@ -34,12 +34,11 @@ push-dev:
 
 
 deploy-dev:
-  image: 104.199.192.37:5000/sshrunner:latest
+  image: 104.199.192.37:5000/ci-sshrunner:latest
   stage: deploy
   only:
     - deploy-dev
   script:
     - ssh -i /etc/ssh/google.pem franco@35.231.99.193 bash dev.sh
-     
-   
-
+  after_script:
+    
