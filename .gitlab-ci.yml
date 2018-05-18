@@ -18,7 +18,7 @@ clear-dev:
   only:
     - deploy-dev
   script:
-    - docker rmi www.mscreativestyle.com/samfashion/samfashion-manerger
+    - docker rmi localhost:5000/samfashion/samfashion-manerger
   allow_failure: true
 
 push-dev:
@@ -30,6 +30,7 @@ push-dev:
     - docker push localhost:5000/samfashion/samfashion-manerger
 
   after_script:
+    - sudo docker rmi samfashion-manerger
     - docker images
 
 
@@ -39,6 +40,6 @@ deploy-dev:
   only:
     - deploy-dev
   script:
-    - ssh -i /etc/ssh/google.pem franco@35.231.99.193 bash ~/samfashion-deploy/deploy-manager.sh
+    - ssh -i /etc/ssh/google.pem franco@35.231.99.193 bash /samfashion-deploy/deploy-manager.sh
   after_script:
     
