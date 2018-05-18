@@ -2,7 +2,7 @@
 	<section class="container">
 		<div>
 			<h1 class="title">
-				Vue Nuxt
+				Vue Nuxt Deploy
 			</h1>
 			<div class="links">
 
@@ -15,7 +15,7 @@
 export default {
 	components: {},
 	mounted() {
-		this.$router.push({ name: "Intro" })
+		this.$router.push({ name: 'Intro' })
 	}
 }
 </script>
@@ -30,8 +30,8 @@ export default {
 }
 
 .title {
-	font-family: "Quicksand", "Source Sans Pro", -apple-system, BlinkMacSystemFont,
-		"Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; /* 1 */
+	font-family: 'Quicksand', 'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue',
+		Arial, sans-serif; /* 1 */
 	display: block;
 	font-weight: 300;
 	font-size: 100px;
