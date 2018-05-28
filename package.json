@@ -12,11 +12,11 @@
     "precommit": "npm run lint"
   },
   "dependencies": {
-    "nuxt": "^1.4.0",
-    "prettier": "^1.12.1",
+    "bootstrap-vue": "^2.0.0-rc.11",
     "less": "^3.0.1",
     "less-loader": "^4.1.0",
-   
+    "nuxt": "^1.4.0",
+    "prettier": "^1.12.1",
     "vue-factory": "^0.1.6"
   },
   "devDependencies": {
