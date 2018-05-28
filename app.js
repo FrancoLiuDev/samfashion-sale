@@ -1,3 +1,4 @@
+const controller = require("./controller")
 const express = require('express') ///////
 const path = require('path')
 const bodyParser = require('body-parser')
@@ -7,6 +8,7 @@ const nuxtConfig = require('./nuxt.config')
 const nuxt = new Nuxt(nuxtConfig)
 const service = require('./app/api/MainSevice')
 const app = express()
+
 service(app)
 
 app.use(bodyParser.json())
@@ -20,6 +22,7 @@ app.use(
     saveUninitialized: false
   })
 )
+
 
 if (nuxtConfig.dev) {
   const promise = new Builder(nuxt).build()

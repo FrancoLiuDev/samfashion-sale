@@ -1,12 +1,13 @@
 <template>
 	<div>
-		<b-table striped hover :items="items" :fields="fields"></b-table>
+		<!-- <b-table striped hover :items="items" :fields="fields"></b-table> -->
 	</div>
 </template>
 
 <script>
 import interactor from './interactor.js'
 import columns from '@Mixins/fuctional/columns'
+import msRequest from '@Requests/msserver/msOrder'
 
 export default {
     mixins: [interactor, columns],
@@ -22,7 +23,11 @@ export default {
         }
     },
     components: {},
-    mounted() {},
+    mounted() {
+        console.log('mounted')
+        msRequest.createMsOrder({name:'ffff'})
+
+    },
     methods: {
         onPack(item) {
             console.log('item', item)

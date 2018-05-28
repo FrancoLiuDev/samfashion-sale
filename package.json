@@ -17,7 +17,17 @@
     "less-loader": "^4.1.0",
     "nuxt": "^1.4.0",
     "prettier": "^1.12.1",
-    "vue-factory": "^0.1.6"
+    "sequelize": "^4.37.10",
+    "sequelize-to-json": "^0.10.3",
+    "vue-factory": "^0.1.6",
+    "form-data": "^2.3.2",
+    "jade": "~1.11.0",
+    "mongodb": "^2.2.25",
+    "monk": "^4.0.0",
+    "morgan": "~1.7.0",
+    "multer": "^1.3.0",
+    "mysql": "^2.14.1",
+    "mysql2": "^1.5.2"
   },
   "devDependencies": {
     "axios": "^0.16.1",

@@ -50,13 +50,7 @@ module.exports = {
       alias['@Delegate'] = path.join(this.options.rootDir, 'store/delegate')
       alias['@Models'] = path.join(this.options.rootDir, 'models')
 
-
-      config.externals = [
-        nodeExternals({
-          whitelist: [/\.(?!(?:js|json)$).{1,5}$/i, /^bootstrap-vue/]
-        })
-      ]
-
+ 
 
     }
     /*
@@ -65,7 +59,7 @@ module.exports = {
   },
   plugins: ['~/plugins/vue-factory'],
   modules: [
-    'bootstrap-vue/nuxt'
+    
 
 
   ]
