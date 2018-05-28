@@ -65,7 +65,7 @@ module.exports = {
   },
   plugins: ['~/plugins/vue-factory'],
   modules: [
-    'bootstrap-vue/nuxt'
+     
 
 
   ]
