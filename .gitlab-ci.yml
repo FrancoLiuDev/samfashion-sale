@@ -39,7 +39,7 @@ deploy-dev:
   stage: deploy
   only:
     - deploy-dev
-  script:
-    - ssh -i /etc/ssh/google.pem franco@35.231.99.193 bash /samfashion-deploy/deploy-manager.sh
+  script: 
+    - ssh -i /etc/ssh/google.pem franco@35.231.99.193 bash dev.sh
   after_script:
     
