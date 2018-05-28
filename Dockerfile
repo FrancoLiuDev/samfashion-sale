@@ -1,4 +1,4 @@
-FROM node:8.9.3
+FROM node:8.11.2
 ADD tmp.tgz /
 RUN npm i \
   && npm run build
