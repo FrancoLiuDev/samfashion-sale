@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<b-table striped hover :items="items"></b-table>
+		<b-table striped hover :items="items" :fields="fields"></b-table>
 	</div>
 </template>
 
@@ -12,6 +12,7 @@ export default {
     mixins: [interactor, columns],
     data() {
         return {
+            fields: [ 'first_name', 'last_name', 'age' ],
             items: [
                 { isActive: true, age: 40, first_name: 'Dickerson', last_name: 'Macdonald' },
                 { isActive: false, age: 21, first_name: 'Larsen', last_name: 'Shaw' },
