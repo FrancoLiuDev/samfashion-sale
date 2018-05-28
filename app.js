@@ -27,7 +27,7 @@ if (nuxtConfig.dev) {
     .then(() => {
       app.use(nuxt.render)
       app.listen(17100)
-      console.log('Server is listening on http://localhost:16100')
+      console.log('Server is listening on http://localhost:17100')
     })
     .catch(error => {
       console.error(error)
