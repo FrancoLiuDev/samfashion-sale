@@ -12,7 +12,7 @@
     "precommit": "npm run lint"
   },
   "dependencies": {
-    "bootstrap-vue": "^2.0.0-rc.11",
+  
     "less": "^3.0.1",
     "less-loader": "^4.1.0",
     "nuxt": "^1.0.0-rc11",
@@ -23,7 +23,7 @@
     "body-parser": "^1.16.0",
     "expose-loader": "^0.7.1",
     "express": "^4.14.0",
-    "express-session": "^1.15.0",
-    "prettier": "^1.12.1"
+    "express-session": "^1.15.0"
+    
   }
 }
