@@ -14,10 +14,21 @@ class MscOrderController extends MscController {
 	async createRetrieveOrder(user, orderMeta) {
 		return new Promise(async function(resolve, reject) {
 			console.log('createRetrieveOrder')
-		    resolve(
-				DomainResult.build(true, DomainResult.results().RESULT_SUCCESS)
-					.serialize()
-			)
+			try {
+				var mutation = await mscOrderModule.patchCreateOrder(user, orderMeta)
+				console.log('result', mutation)
+				resolve(
+					DomainResult.build(true, DomainResult.results().RESULT_SUCCESS)
+						.setdata(mutation.data)
+						.serialize()
+				)
+			} catch (e) {
+				reject(
+					DomainResult.build(false, DomainResult.results().RESULT_ERROR_UNKNOW)
+						.setreason(e)
+						.serialize()
+				)
+			}
 		})
 	}
 

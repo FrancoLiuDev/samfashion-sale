@@ -69,19 +69,12 @@ class MscOrderModule {
 				.create(
 					{
 						ownerId: user,
-						status: '0',
 						createDate: now
 					},
 					{ transaction: transation }
 				)
 				.then(async function(p) {
 					console.log('tran t pass', p)
-					var orderId = p.orderId
-					for (var index in packege) {
-						var element = packege[index]
-						//var x = await self._createPackageItem(orderId, element, transation)
-					}
-					console.log('now resolve')
 					resolve('pass')
 				})
 				.catch(function(err) {
