@@ -21,10 +21,20 @@ module.exports = {
         content: 'membership managerment'
       }
     ],
+    
     link: [{
       rel: 'icon',
       type: 'image/x-icon',
       href: '/favicon.ico'
+    },{
+      rel: 'stylesheet',
+      type: 'text/css',
+      href: '//unpkg.com/bootstrap/dist/css/bootstrap.min.css'
+    },
+    {
+      rel: 'stylesheet',
+      type: 'text/css',
+      href: '//unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.css'
     }]
   },
   /*
@@ -59,7 +69,7 @@ module.exports = {
   },
   plugins: ['~/plugins/vue-factory'],
   modules: [
-    
+    ['bootstrap-vue/nuxt', { css: false }]
 
 
   ]

@@ -1,6 +1,25 @@
 <template>
 	<div>
 		<!-- <b-table striped hover :items="items" :fields="fields"></b-table> -->
+        <div id="order-delivery">
+                    <div id="delivery-header" class="header">
+                        <span class="cell-product">訂購人資訊</span>
+                    </div>
+                </div>
+                <div class="list-content">
+                    <div class="cell-list-item">
+                        <span class="cell-title">收件人:</span>
+                        <b-form-input class="input-field" type="text" size="sm" placeholder="姓名"></b-form-input>
+                    </div>
+                    <div class="cell-list-item">
+                        <span class="cell-title">手機:</span>
+                        <b-form-input class="input-field" type="text" size="sm" placeholder="姓名"></b-form-input>
+                    </div>
+                    <div class="cell-list-item">
+                        <span class="cell-title">配送門市:</span>
+                        <b-form-input class="input-field" type="text" size="sm" placeholder="門市"></b-form-input>
+                    </div>
+                </div>
 	</div>
 </template>
 
@@ -25,7 +44,8 @@ export default {
     components: {},
     mounted() {
         console.log('mounted')
-        msRequest.createMsOrder({name:'ffff'})
+        msRequest.createMsOrder({})
+       // msRequest.listMsOrders()
 
     },
     methods: {

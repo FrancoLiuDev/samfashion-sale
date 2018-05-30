@@ -14,6 +14,13 @@ class MsOrderModule extends MsServiceModule {
       url: this.url + '/msc/api/v1/order/'
     })
   }
+  listMsOrders() {
+    console.log('listMsOrders')
+    return this.excuteRequest({
+      type: 'get',
+      url: this.url + '/msc/api/v1/order/'
+    })
+  }
   
 }
 let orderModule = new MsOrderModule()

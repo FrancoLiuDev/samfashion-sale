@@ -1,8 +1,11 @@
 const Sequelize = require("sequelize")
+const timezone = 'Asia/Taipei'
 let config = require(__config + "/productDbCfg")
 let msproductDb = null
 let msuserDb = null
 let msorderDb = null
+
+require('moment').tz.setDefault(timezone)
 
 const createDbConn = function(name) {
 	const sequelize = new Sequelize(name, config.user, config.pwd, {
@@ -12,7 +15,8 @@ const createDbConn = function(name) {
 			max: 5,
 			min: 0,
 			idle: 10000
-		}
+		},
+		timezone: timezone
 	})
 
 	sequelize
