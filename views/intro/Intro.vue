@@ -6,9 +6,15 @@
                         <span class="cell-product">訂購人資訊</span>
                     </div>
                 </div>
+                <!-- saleMember:7,
+				orderPhone:'0939548880',
+				orderAddr:'台北地址',
+				orderSpec:'M',
+				orderPrice:[8,2,2,2,2].toString(),
+				orderOther:'其他說明' -->
                 <div class="list-content">
                     <div class="cell-list-item">
-                        <span class="cell-title">收件人:</span>
+                        <span class="cell-title">業務:</span>
                         <b-form-input class="input-field" type="text" size="sm" placeholder="姓名"></b-form-input>
                     </div>
                     <div class="cell-list-item">
@@ -16,7 +22,12 @@
                         <b-form-input class="input-field" type="text" size="sm" placeholder="姓名"></b-form-input>
                     </div>
                     <div class="cell-list-item">
-                        <span class="cell-title">配送門市:</span>
+                        <span class="cell-title">地址:</span>
+                        <b-form-input class="input-field" type="text" size="sm" placeholder="姓名"></b-form-input>
+                    </div>
+                   
+                    <div class="cell-list-item">
+                        <span class="cell-title">備註:</span>
                         <b-form-input class="input-field" type="text" size="sm" placeholder="門市"></b-form-input>
                     </div>
                 </div>
