@@ -1,4 +1,4 @@
-class OrderInfo {
+class OrderIiemInfo {
   constructor() {
     this.init()
   }
@@ -25,10 +25,20 @@ class OrderInfo {
     }
   }
   
-  
+  get orderDateNumber() {
+    return this._orderDateNumber ? this._orderDateNumber : ''
+  }
+  get dateDisplay() {
+    var date = new Date(this._createDate)
+    date.getMonth()
+    return date.getFullYear()
+  }
   get saleMember() {
     return this._saleMember ? this._saleMember : ''
-  }
+  } 
+ 
+
+
   get orderPhone() {
     return this._orderPhone ? this._orderPhone : ''
   }
@@ -59,4 +69,4 @@ class OrderInfo {
   }
 }
 
-export default OrderInfo
+export default OrderIiemInfo

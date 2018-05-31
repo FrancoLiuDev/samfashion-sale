@@ -1,10 +1,13 @@
 const OrderSchema = require(__schema + '/order')
 const Serializer = require('sequelize-to-json')
+const MscModuleBase = require('./mscModuleBase')
 let orderSchema = OrderSchema.mainOrder()
 let configTable = OrderSchema.configTable()
-
-class MscOrderModule {
-  constructor() {}
+const Mutation = require(__exception + '/Mutation')
+class MscOrderModule extends MscModuleBase{
+  constructor() {
+    super()
+  }
   readOrder(id) {
     let self = this
     return new Promise(function (resolve, reject) {
@@ -45,19 +48,20 @@ class MscOrderModule {
   readOrderList() {
     let self = this
     return new Promise(function (resolve, reject) {
-      var dStart = new Date("5/01/2018 0:00:0:0")
-      var dEnd = new Date("6/1/2018 0:00:0:0")
+      // var dStart = new Date("5/01/2018 0:00:0:0")
+      // var dEnd = new Date("6/1/2018 0:00:0:0")
       orderSchema
         .findAll({
-          where: {
-            createDate: {
-              $between: [dStart, dEnd]
-            }
-          }
+          // where: {
+          //   createDate: {
+          //     $between: [dStart, dEnd]
+          //   }
+          // }
         })
         .then(function (data) {
           let serializer = Serializer.serializeMany(data, orderSchema)
-          resolve(serializer)
+          resolve(self.reportMutation(true, Mutation.codes().MODULE_ERROR_SUCCESS, serializer, null))
+          
         })
         .catch(err => console.log(err))
     })
