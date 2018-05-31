@@ -37,6 +37,7 @@ class HttpModule {
   }
 
   apiExecute(data, callback) {
+    console.log('data',data)
     axios({
       url: this.param.url,
       method: this.param.type,

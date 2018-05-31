@@ -14,6 +14,16 @@ class OrderInfo {
     this._orderOther = ''
     this._orderPrice = []
   }
+  packNewData() {
+    return {
+      saleMember: this._saleMember,
+      orderPhone: this._orderPhone,
+      orderAddr: this._orderAddr,
+      orderSpec: 'updata.orderSpec',
+      orderPrice: this._orderPrice.toString(),
+      orderOther: this._orderOther,
+    }
+  }
   get saleMember() {
     return this._saleMember ? this._saleMember : ''
   }

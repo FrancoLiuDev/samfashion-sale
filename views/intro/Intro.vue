@@ -33,12 +33,14 @@
                         +
                     </b-button>
                 </div>
-
             </div>
             <div class="cell-list-item">
                 <span class="cell-title">備註:</span>
                 <b-form-input  v-model="orderInfo.orderOther" class="input-field" type="text" size="sm" placeholder="備註"></b-form-input>
             </div>
+            <b-button size="sm" v-on:click="onSubmitNewOrder" >
+                       提交
+            </b-button>
         </div>
     </div>
 </template>
@@ -86,6 +88,9 @@ export default {
         },
         onRemocePrice(index){
             this.orderInfo.orderPrice.splice(index, 1);
+        },
+        onSubmitNewOrder(){
+            msRequest.createMsOrder(this.orderInfo.packNewData())
         }
     }
 }

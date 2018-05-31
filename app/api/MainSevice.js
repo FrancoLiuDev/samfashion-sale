@@ -5,16 +5,16 @@ const mscOrderController = new MscOrderController()
 function MainSevice(app) {
     //建築列表
     app.post('/msc/api/v1/order/', async function(req, res) {
-		console.log('post order')
-	 
+		console.log('post order',req.body)
+	    updata = req.body
 		mscOrderController
 			.createRetrieveOrder('1', {
-				saleMember:7,
-				orderPhone:'0939548880',
-				orderAddr:'台北地址',
-				orderSpec:'M',
-				orderPrice:[8,2,2,2,2].toString(),
-				orderOther:'其他說明'
+				saleMember:updata.saleMember,
+				orderPhone:updata.orderPhone,
+				orderAddr:updata.orderAddr,
+				orderSpec:updata.orderSpec,
+				orderPrice:updata.orderPrice,
+				orderOther:updata.orderOther,
 			})
 			.then(result => {
                 console.log('ok')

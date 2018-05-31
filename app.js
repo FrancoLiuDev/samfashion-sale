@@ -9,10 +9,23 @@ const nuxt = new Nuxt(nuxtConfig)
 const service = require('./app/api/MainSevice')
 const app = express()
 
-service(app)
+var cors = require("cors")
+ 
+
+
+app.use(cors())
+app.use(
+	bodyParser.urlencoded({
+		extended: true,
+		limit: "1mb"
+	})
+)
 
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
+
+service(app)
+
 app.use(express.static('static'))
 app.use(
   session({
