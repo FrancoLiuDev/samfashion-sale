@@ -26,12 +26,23 @@ class OrderIiemInfo {
   }
   
   get orderDateNumber() {
-    return this._orderDateNumber ? this._orderDateNumber : ''
+    var date = new Date(this._createDate)
+    var month = date.getMonth()+1
+    var date = date.getDate()
+
+    var displayDate = String("00"+ month).slice(-2) +  String("00"+ date).slice(-2)
+
+    return displayDate + String("000"+ this._orderDateNumber).slice(-3)
+   
   }
   get dateDisplay() {
     var date = new Date(this._createDate)
-    date.getMonth()
-    return date.getFullYear()
+    var month = date.getMonth()+1
+    var date = date.getDate()
+
+    var displayDate = String("00"+ month).slice(-2) +  String("00"+ date).slice(-2)
+
+    return displayDate 
   }
   get saleMember() {
     return this._saleMember ? this._saleMember : ''
@@ -49,7 +60,7 @@ class OrderIiemInfo {
     return this._orderOther ? this._orderOther : ''
   }
   get orderPrice() {
-    return this._orderPrice ? this._orderPrice : ''
+    return this._orderPrice ? JSON.parse("[" + this._orderPrice + "]") : ''
   }
 
   set saleMember(val) {

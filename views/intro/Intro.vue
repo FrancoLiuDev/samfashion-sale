@@ -45,9 +45,15 @@
             <template slot="action" slot-scope="row">
                 <!-- we use @click.stop here to prevent emitting of a 'row-clicked' event  -->
                 <b-button size="sm" class="mr-2">
-                    {{ row.detailsShowing ? 'Hide' : 'Show'}} Details
+                     刪除
                 </b-button>
 
+            </template>
+             <template slot="price" slot-scope="row">
+                
+                  <div v-for="(dspprice,index) in row.item.orderPrice" :key="index">
+                      <span>${{dspprice}}</span><br>
+                  </div>
             </template>
         </b-table>
     </div>
@@ -77,14 +83,17 @@ export default {
                 { key: 'orderDateNumber', label: '流水號' },
                 { key: 'saleMember', label: '業務' },
                 { key: 'dateDisplay', label: '日期' },
-                { key: 'orderPhone', label: '電話' },
+                { key: 'price', label: '價格' },
                 { key: 'orderAddr', label: '地址' },
                 { key: 'orderOther', label: '備註' },
-                'action'
+                 { key: 'action', label: '刪除' },
+             
+                
             ],
             items: [],
             valAddPrice: '',
-            orderInfo: new OrderInfo()
+            orderInfo: new OrderInfo(),
+            testprice:[22,11]
         }
     },
     components: {},
