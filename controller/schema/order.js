@@ -19,10 +19,10 @@ var order_tbl = sequelize.define(
 		createDate: {
 			type: Sequelize.DATE,
 			allowNull: false,
-			primaryKey: false,
-			get: function() {
-				return moment.utc(this.getDataValue('createDate')).format('YYYY-MM-DD HH:mm')
-			}
+			primaryKey: false
+			// get: function() {
+			// 	return moment.utc(this.getDataValue('createDate')).format('YYYY-MM-DD HH:mm')
+			// }
 		
 		},
 		orderDateNumber: {
@@ -84,10 +84,10 @@ var order_config_tbl = sequelize.define(
 		countDate: {
 			type: Sequelize.DATE,
 			allowNull: false,
-			primaryKey: false,
-			get: function() {
-				return moment.utc(this.getDataValue('createDate')).format('YYYY-MM-DD HH:mm')
-			}
+			primaryKey: false
+			// get: function() {
+			// 	return moment.utc(this.getDataValue('createDate')).format('YYYY-MM-DD HH:mm')
+			// }
 		}
 	},
 	{

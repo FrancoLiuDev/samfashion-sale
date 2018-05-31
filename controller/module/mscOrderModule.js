@@ -132,10 +132,14 @@ class MscOrderModule {
       var nowtime = new Date();
       var ordertime = new Date(configData.countDate);
       
-      if (nowtime.getFullYear() != ordertime.getFullYear() || nowtime.getMonth() != ordertime.getMonth() || nowtime.getDay() != ordertime.getDay()) {
-        configData = await self.makeNewDateOrderIndex()
+      console.log('configData',configData)
+      console.log('time',nowtime,ordertime)
+      console.log('year',nowtime.getFullYear(),ordertime.getFullYear())
+      console.log('month',nowtime.getMonth(),ordertime.getMonth())
+      console.log('day',nowtime.getDate() ,ordertime.getDate() )
+      if (nowtime.getFullYear() != ordertime.getFullYear() || nowtime.getMonth() != ordertime.getMonth() || nowtime.getDate() != ordertime.getDate()) {
+        await self.makeNewDateOrderIndex()
       }  
-      await self.makeNewDateOrderIndex()  
       configData = await self.readOrderConfig()
       resolve({
         number: configData.countIndex,
@@ -170,7 +174,8 @@ class MscOrderModule {
 
   makeNewDateOrderIndex() {
     return new Promise(function (resolve, reject) {
-      var nowtime = new Date('2017-05-29 22:06:00');
+      var nowtime = new Date();
+      console.log('makeNewDateOrderIndex !')
       configTable
       .update({
         countDate: nowtime,
