@@ -7,6 +7,13 @@ class OrderInfo {
       this['_' + key] = model[key]
     }
   }
+  clear() {
+    this._saleMember = ''
+    this._orderPhone = ''
+    this._orderAddr = ''
+    this._orderPrice = []
+    this._orderOther = ''
+  }
   init() {
     this._saleMember = ''
     this._orderPhone = ''
@@ -24,8 +31,8 @@ class OrderInfo {
       orderOther: this._orderOther,
     }
   }
-  
-  
+
+
   get saleMember() {
     return this._saleMember ? this._saleMember : ''
   }

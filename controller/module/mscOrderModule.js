@@ -15,7 +15,6 @@ class MscOrderModule extends MscModuleBase{
         include: ['@all', 'meta'],
         exclude: ['@fk'],
         assoc: {
-          // scheme to be used for the associated `User` instance
           meta: {
             exclude: ['@pk', '@fk']
           }
@@ -24,15 +23,6 @@ class MscOrderModule extends MscModuleBase{
 
       orderSchema
         .find({
-          // include: [
-          // 	{
-          // 		model: packegeSchema,
-          // 		as: 'meta',
-          // 		where: {
-          // 			orderId_fkl: id
-          // 		}
-          // 	}
-          // ],
           where: {
             orderId: id
           }
@@ -41,6 +31,21 @@ class MscOrderModule extends MscModuleBase{
           let serializer = new Serializer(orderSchema, scheme)
           let postAsJSON = serializer.serialize(data)
           resolve(postAsJSON)
+        })
+        .catch(err => console.log(err))
+    })
+  }
+  deleteOrder(id){
+    let self = this
+    return new Promise(function (resolve, reject) {
+      orderSchema
+        .destroy({
+          where: {
+            orderId:id
+          }
+        })
+        .then(function (result) {
+          resolve(self.reportMutation(true, Mutation.codes().MODULE_ERROR_SUCCESS, result, null))
         })
         .catch(err => console.log(err))
     })
@@ -61,7 +66,6 @@ class MscOrderModule extends MscModuleBase{
         .then(function (data) {
           let serializer = Serializer.serializeMany(data, orderSchema)
           resolve(self.reportMutation(true, Mutation.codes().MODULE_ERROR_SUCCESS, serializer, null))
-          
         })
         .catch(err => console.log(err))
     })
@@ -74,7 +78,7 @@ class MscOrderModule extends MscModuleBase{
           return self._createOrder(user, packege, null)
         })
         .then(function (result) {
-          resolve(result)
+          resolve(self.reportMutation(true, Mutation.codes().MODULE_ERROR_SUCCESS, result, null))
           console.log('Transaction has been committed')
         })
         .catch(function (err) {
@@ -114,7 +118,6 @@ class MscOrderModule extends MscModuleBase{
     })
   }
 
-
   readOrderConfig() {
     let self = this
     return new Promise(function (resolve, reject) {
@@ -149,7 +152,6 @@ class MscOrderModule extends MscModuleBase{
         number: configData.countIndex,
         date: configData.countDate
       })
-
     })
 
   }
@@ -164,12 +166,11 @@ class MscOrderModule extends MscModuleBase{
           }
       })
       .then(function(record) {
-     
         resolve(record)
       })
       .catch(function(err) {
-          // var mutation = self.reportMutation(false, Mutation.codes().MODULE_ERROR_UNHANDLE, err)
-          // reject(mutation)
+          var mutation = self.reportMutation(false, Mutation.codes().MODULE_ERROR_UNHANDLE, err)
+          reject(mutation)
           console.log('err', err)
       })
       

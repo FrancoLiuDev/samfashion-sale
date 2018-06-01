@@ -14,6 +14,12 @@ class MsOrderModule extends MsServiceModule {
       url: this.url + '/msc/api/v1/order/'
     })
   }
+  deleteMsOrder(id) {
+    return this.excuteRequest({
+      type: 'delete',
+      url: this.url + '/msc/api/v1/order/'+ id
+    })
+  }
   listMsOrders() {
     console.log('listMsOrders')
     return this.excuteRequest({

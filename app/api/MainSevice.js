@@ -49,6 +49,27 @@ function MainSevice(app) {
 				// }
 			})
 	})
+    app.delete('/msc/api/v1/order/:id', async function(req, res) {	 
+		var id = req.params.id
+		console.log('delete',id)
+		mscOrderController
+			.deleteOrderById(id)
+			.then(result => {
+                console.log('ok')
+				res.status(result.status).send(result)
+			})
+			.catch(err => {
+                console.log('err',err)
+				// if (appUtils.isControllerException(err)) {
+				// 	console.log('order/:id', err)
+				// 	res.status(err.status).send(err)y
+				// } else {
+				// 	console.log(err)
+				// 	res.status(500).send(err)
+				// }
+			})
+	})
+	 
 }
 
 module.exports = MainSevice

@@ -33,6 +33,26 @@ class MscOrderController extends MscController {
     })
 
   }
+  deleteOrderById(id) {
+    return new Promise(async function (resolve, reject) {
+      console.log('deleteOrderById:',id)
+      try {
+        var mutation = await mscOrderModule.deleteOrder(id)
+        console.log('result', mutation)
+        resolve(
+          DomainResult.build(true, DomainResult.results().RESULT_SUCCESS)
+          .serialize()
+        )
+      } catch (e) {
+        reject(
+          DomainResult.build(false, DomainResult.results().RESULT_ERROR_UNKNOW)
+          .setreason(e)
+          .serialize()
+        )
+      }
+    })
+
+  }
   createRetrieveOrder(user, orderMeta) {
     return new Promise(function (resolve, reject) {
       console.log('createRetrieveOrder')
@@ -41,13 +61,6 @@ class MscOrderController extends MscController {
         .then(async function (release) {
 			try {
 				console.log('release',release)
-				/** saleMember:packege.saleMember,
-				  orderPhone:packege.orderPhone,
-				  orderAddr:packege.orderAddr,
-				  orderSpec:packege.orderSpec,
-				  orderPrice:packege.orderPrice,
-				  orderOther:packege.orderOther,
-				  createDate: now */
 				var configData = await mscOrderModule.getNextOrderId()
 				orderMeta.orderDateNumber = configData.number
 				console.log('orderMeta', orderMeta)
