@@ -27,7 +27,7 @@
                             <div class="del-item" v-on:click="onRemocePrice(index)">X</div>
                         </div>
                         <div>
-                            <b-form-input v-model="valAddPrice" class="input-field" type="text" size="sm" placeholder="備註"></b-form-input>
+                            <b-form-input v-model="valAddPrice" class="input-field" type="text" size="sm" placeholder="價格"></b-form-input>
                         </div>
                         <b-button size="sm" id="bt-addprice" v-on:click="onAddPrice">
                             +
