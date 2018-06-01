@@ -20,10 +20,11 @@ class MsOrderModule extends MsServiceModule {
       url: this.url + '/msc/api/v1/order/'+ id
     })
   }
-  listMsOrders() {
+  listMsOrders(meta) {
     console.log('listMsOrders')
     return this.excuteRequest({
-      type: 'get',
+      type: 'put',
+      data: meta,
       url: this.url + '/msc/api/v1/order/'
     })
   }

@@ -50,18 +50,28 @@ class MscOrderModule extends MscModuleBase{
         .catch(err => console.log(err))
     })
   }
-  readOrderList() {
+  readOrderList(confition) {
     let self = this
+    var wherequery = {}
+    var conditionCreateDate = null
+
+    if (confition.month && confition.date){
+      var dStart = new Date(confition.month+"/"+confition.date+"/2018 0:00:0:0")
+      var dEnd = new Date(confition.month+"/"+confition.date +1+"/2018 0:00:0:0")
+      wherequery['createDate'] = {
+        $between: [dStart, dEnd]
+      }
+    }
+
+    if (confition.order){
+      wherequery['orderDateNumber'] = confition.order
+    }
     return new Promise(function (resolve, reject) {
       // var dStart = new Date("5/01/2018 0:00:0:0")
       // var dEnd = new Date("6/1/2018 0:00:0:0")
       orderSchema
         .findAll({
-          // where: {
-          //   createDate: {
-          //     $between: [dStart, dEnd]
-          //   }
-          // }
+          where: wherequery
         })
         .then(function (data) {
           let serializer = Serializer.serializeMany(data, orderSchema)

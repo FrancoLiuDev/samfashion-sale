@@ -43,14 +43,19 @@
                 </b-button>
             </div>
         </div>
-
+        <div id="command-layout">
+            <span class="cell-title">搜索:</span>
+            <b-form-input v-model="textSearch" class="input-field" type="text" size="sm" placeholder="流水號 0505001"></b-form-input>
+            <b-button size="sm" class="mr-2" v-on:click="fetchListData">
+                   搜索
+                </b-button>
+        </div>
         <b-table striped hover :items="items" :fields="fields">
             <template slot="action" slot-scope="row">
                 <!-- we use @click.stop here to prevent emitting of a 'row-clicked' event  -->
                 <b-button size="sm" class="mr-2" v-on:click="onDelOrder(row.item)">
                     刪除
                 </b-button>
-
             </template>
             <template slot="orderInfo" slot-scope="row">
                 {{row.item.orderPhone}}<br> {{row.item.orderAddr}}
@@ -87,7 +92,8 @@ export default {
             items: [],
             valAddPrice: '',
             orderInfo: new OrderInfo(),
-            testprice: [22, 11]
+            testprice: [22, 11],
+            textSearch: ''
         }
     },
     components: {},
@@ -97,16 +103,7 @@ export default {
         }
     },
     mounted() {
-        console.log('mounted')
-        msRequest.listMsOrders().then(result => {
-            var self = this
-            this.items = []
-            result.data.data.forEach(function(item) {
-                var ObjItem = new OrderIiemInfo()
-                ObjItem.load(item)
-                self.items.push(ObjItem)
-            })
-        })
+        this.fetchListData()
     },
     methods: {
         onPack(item) {
@@ -126,18 +123,62 @@ export default {
                     console.log('result', result)
                     this.orderInfo.clear()
                     this.valAddPrice = ''
+                    this.fetchListData()
                 }
             })
         },
         onDelOrder(item) {
             console.log('delete item', item)
-            msRequest.deleteMsOrder(item._orderId)
+            msRequest.deleteMsOrder(item._orderId).then(result => {
+                if (result.data.success == true) {
+                    console.log('result', result)
+                    this.orderInfo.clear()
+                    this.valAddPrice = ''
+                    this.fetchListData()
+                }
+            })
+        },
+        fetchListData() {
+            var lenth =this.textSearch.length
+            var condiition = {}
+            while(true){
+                if (lenth == 0) break
+                if (lenth >=2){
+                    var sMonth = parseInt(this.textSearch.substring(0, 2))
+                    if  (sMonth > 0 && sMonth < 13) condiition['month'] = sMonth
+                }
+                if (lenth >=4){
+                    var sDate = parseInt(this.textSearch.substring(2, 4))
+                    if  (sDate > 0 && sDate < 32) condiition['date'] = sDate
+                }
+                 if (lenth >=7){
+                    var sOrder = parseInt(this.textSearch.substring(4, 7))
+                    if  (sOrder > 0 && sOrder < 1000) condiition['order'] = sOrder
+                }
+                break
+            }
+            console.log('condiition',condiition)
+            
+            msRequest
+                .listMsOrders(condiition)
+                .then(result => {
+                    var self = this
+                    this.items = []
+                    result.data.data.forEach(function(item) {
+                        var ObjItem = new OrderIiemInfo()
+                        ObjItem.load(item)
+                        self.items.push(ObjItem)
+                    })
+                })
         }
     }
 }
 </script>
 
 <style lang="less"scoped>
+#command-layout {
+    width: auto;
+}
 #order-submit {
     margin-bottom: 20px;
 }

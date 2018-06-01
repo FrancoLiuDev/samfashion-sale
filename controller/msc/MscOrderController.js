@@ -12,11 +12,11 @@ class MscOrderController extends MscController {
   readOrder(id) {
     return mscOrderModule.readOrder(id)
   }
-  readOrderList() {
+  readOrderList(condition) {
     return new Promise(async function (resolve, reject) {
       console.log('createRetrieveOrder')
       try {
-        var mutation = await mscOrderModule.readOrderList()
+        var mutation = await mscOrderModule.readOrderList(condition)
         console.log('result', mutation)
         resolve(
           DomainResult.build(true, DomainResult.results().RESULT_SUCCESS)
