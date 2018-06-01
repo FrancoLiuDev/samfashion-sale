@@ -7,7 +7,7 @@ module.exports = {
    */
   dev: true,
   head: {
-    title: 'dalimember',
+    title: 'intro',
     meta: [{
         charset: 'utf-8'
       },
