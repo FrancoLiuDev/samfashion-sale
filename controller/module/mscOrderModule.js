@@ -1,6 +1,8 @@
 const OrderSchema = require(__schema + '/order')
 const Serializer = require('sequelize-to-json')
 const MscModuleBase = require('./mscModuleBase')
+const appUtils = require(__utils + '/timeUtil')
+
 let orderSchema = OrderSchema.mainOrder()
 let configTable = OrderSchema.configTable()
 const Mutation = require(__exception + '/Mutation')
@@ -146,16 +148,16 @@ class MscOrderModule extends MscModuleBase{
     let self = this
     return new Promise(async function (resolve, reject) {
       var configData = await self.readOrderConfig()
-      var nowtime = new Date();
-      var ordertime = new Date(configData.countDate);
-      
+      var twDate = appUtils.genTwDate()
+      var ordertime =  appUtils.convertDateToTwDate(new Date(configData.countDate))
       console.log('configData',configData)
-      console.log('time',nowtime,ordertime)
-      console.log('year',nowtime.getUTCFullYear(),ordertime.getUTCFullYear())
-      console.log('month',nowtime.getUTCMonth(),ordertime.getUTCMonth())
-      console.log('day',nowtime.getUTCDate() ,ordertime.getUTCDate())
-
-      if (nowtime.getUTCFullYear() != ordertime.getUTCFullYear() || nowtime.getUTCMonth() != ordertime.getUTCMonth() || nowtime.getUTCDate() != ordertime.getUTCDate()) {
+      console.log('time',twDate,ordertime)
+      console.log('year',twDate.getFullYear(),ordertime.getFullYear())
+      console.log('month',twDate.getMonth(),ordertime.getMonth())
+      console.log('day',twDate.getDate() ,ordertime.getDate())
+      console.log('getHours',twDate.getHours() ,ordertime.getHours())
+     
+      if (twDate.getFullYear() != ordertime.getFullYear() || twDate.getMonth() != ordertime.getMonth() || twDate.getDate() != ordertime.getDate()) {
         await self.makeNewDateOrderIndex(configData)
       }  
       configData = await self.readOrderConfig(configData)
@@ -207,7 +209,6 @@ class MscOrderModule extends MscModuleBase{
           returning: true
       })
       .then(function(record) {
-      
         resolve(record)
       })
       .catch(function(err) {

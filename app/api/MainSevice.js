@@ -1,5 +1,6 @@
 const MscOrderController = require(__controllers + '/msc/MscOrderController')
 const mscOrderController = new MscOrderController()
+const appUtils = require(__utils + '/timeUtil')
 
 function MainSevice(app) {
 
@@ -67,24 +68,26 @@ function MainSevice(app) {
       })
   })
   app.get('/msc/api/v1/timezone', async function (req, res) {
-
-    var nowtime = new Date()
-    var localTime = nowtime.getTime();
-    var localOffset = nowtime.getTimezoneOffset() * 60000
-    var utc = localTime + localOffset 
-    var tortiem = utc + 28800000
-    var torDate = new Date(tortiem)
-    //return  nowtime.toLocaleString()
-    var twdate =  torDate.getMonth() + 1 + "/" + torDate.getDate() + " " + torDate.getHours() + ":" + torDate.getMinutes() 
+    console.log('time')
+    twDate = appUtils.genTwDate()
+    // var nowtime = new Date()
+    // var localTime = nowtime.getTime();
+    // var localOffset = nowtime.getTimezoneOffset() * 60000
+    // var utc = localTime + localOffset 
+    // var tortiem = utc + 28800000
+    // var torDate = new Date(tortiem)
+    // //return  nowtime.toLocaleString()
+    // var twdate =  torDate.getMonth() + 1 + "/" + torDate.getDate() + " " + torDate.getHours() + ":" + torDate.getMinutes() 
     
-    res.status(200).send({
-      offset:localOffset,
+    // res.status(200).send({
+    //   offset:localOffset,
      
-      twdate:twdate,
+    //   twdate:twdate,
 
 
-    } )
-    //res.status(200).send(torDate.getMonth() + 1 + "/" + torDate.getDate() + " " + torDate.getHours() + ":" + torDate.getMinutes() )
+    // } )
+    res.status(200).send(twDate.toLocaleString() )
+    //res.status(200).send(twDate.getMonth() + 1 + "/" + twDate.getDate() + " " + twDate.getHours() + ":" + twDate.getMinutes() )
 
   })
 
