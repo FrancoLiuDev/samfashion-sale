@@ -1,12 +1,15 @@
 <template>
 	<section class="container">
 		<div>
-			{{localtime}}
+			{{localtime}} <br>
+			{{Toronto}}
 		</div>
 	</section>
 </template>
 
 <script>
+import moment from 'moment-timezone'
+ 
 export default {
 	components: {},
 	mounted() {
@@ -18,6 +21,16 @@ export default {
 			var offset = new Date().getTimezoneOffset();
 			//return  nowtime.toLocaleString()
 			return  nowtime.getMonth()+1+"/"+nowtime.getDate()+" "+nowtime.getHours()+":"+nowtime.getMinutes()+" "+Intl.DateTimeFormat().resolvedOptions().timeZone
+		},
+		Toronto:function(){
+			var nowtime = new Date()
+			var localTime = nowtime.getTime();
+			var localOffset = nowtime.getTimezoneOffset() * 60000
+			var utc = localTime + localOffset 
+            var tortiem = utc + 28800000
+			var torDate = new Date(tortiem)
+			//return  nowtime.toLocaleString()
+			return  torDate.getMonth() + 1 + "/" + torDate.getDate() + " " + torDate.getHours() + ":" + torDate.getMinutes() 
 		}
 	}
 }

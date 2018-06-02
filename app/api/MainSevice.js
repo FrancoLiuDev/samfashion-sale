@@ -69,10 +69,22 @@ function MainSevice(app) {
   app.get('/msc/api/v1/timezone', async function (req, res) {
 
     var nowtime = new Date()
-    var offset = new Date().getTimezoneOffset();
+    var localTime = nowtime.getTime();
+    var localOffset = nowtime.getTimezoneOffset() * 60000
+    var utc = localTime + localOffset 
+    var tortiem = utc + 28800000
+    var torDate = new Date(tortiem)
     //return  nowtime.toLocaleString()
+    var twdate =  torDate.getMonth() + 1 + "/" + torDate.getDate() + " " + torDate.getHours() + ":" + torDate.getMinutes() 
+    
+    res.status(200).send({
+      offset:localOffset,
+     
+      twdate:twdate,
 
-    res.status(200).send(nowtime.getMonth() + 1 + "/" + nowtime.getDate() + " " + nowtime.getHours() + ":" + nowtime.getMinutes() + " " + Intl.DateTimeFormat().resolvedOptions().timeZone)
+
+    } )
+    //res.status(200).send(torDate.getMonth() + 1 + "/" + torDate.getDate() + " " + torDate.getHours() + ":" + torDate.getMinutes() )
 
   })
 
