@@ -151,13 +151,14 @@ class MscOrderModule extends MscModuleBase{
       
       console.log('configData',configData)
       console.log('time',nowtime,ordertime)
-      console.log('year',nowtime.getFullYear(),ordertime.getFullYear())
-      console.log('month',nowtime.getMonth(),ordertime.getMonth())
-      console.log('day',nowtime.getDate() ,ordertime.getDate() )
-      if (nowtime.getFullYear() != ordertime.getFullYear() || nowtime.getMonth() != ordertime.getMonth() || nowtime.getDate() != ordertime.getDate()) {
-        await self.makeNewDateOrderIndex()
+      console.log('year',nowtime.getUTCFullYear(),ordertime.getUTCFullYear())
+      console.log('month',nowtime.getUTCMonth(),ordertime.getUTCMonth())
+      console.log('day',nowtime.getUTCDate() ,ordertime.getUTCDate())
+
+      if (nowtime.getUTCFullYear() != ordertime.getUTCFullYear() || nowtime.getUTCMonth() != ordertime.getUTCMonth() || nowtime.getUTCDate() != ordertime.getUTCDate()) {
+        await self.makeNewDateOrderIndex(configData)
       }  
-      configData = await self.readOrderConfig()
+      configData = await self.readOrderConfig(configData)
       resolve({
         number: configData.countIndex,
         date: configData.countDate
@@ -187,13 +188,17 @@ class MscOrderModule extends MscModuleBase{
     })
   }
 
-  makeNewDateOrderIndex() {
+  makeNewDateOrderIndex(lastconfigData) {
     return new Promise(function (resolve, reject) {
       var nowtime = new Date();
+      var lastDate = new Date(lastconfigData.countDate);
       console.log('makeNewDateOrderIndex !')
       configTable
       .update({
         countDate: nowtime,
+        lastDate:lastDate,
+        localDate:nowtime.toLocaleString(),
+        lastlocalDate:lastDate.toLocaleString(),
         countIndex: '1',
       }, {
           where: {

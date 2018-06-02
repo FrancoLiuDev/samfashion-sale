@@ -28,21 +28,21 @@ class OrderIiemInfo {
   get orderDateNumber() {
     var date = new Date(this._createDate)
     var month = date.getMonth()+1
-    var date = date.getDate()
-
-    var displayDate = String("00"+ month).slice(-2) +  String("00"+ date).slice(-2)
+    var dates = date.getDate()
+    
+    var displayDate = String("00"+ month).slice(-2) +  String("00"+ dates).slice(-2)
 
     return displayDate + String("000"+ this._orderDateNumber).slice(-3)
-   
+    //return date.getUTCMonth()
   }
   get dateDisplay() {
     var date = new Date(this._createDate)
     var month = date.getMonth()+1
-    var date = date.getDate()
+    var dates = date.getDate()
 
-    var displayDate = String("00"+ month).slice(-2) +  String("00"+ date).slice(-2)
+    var displayDate = String("00"+ month).slice(-2) +  String("00"+ dates).slice(-2)
 
-    return displayDate 
+    return date.toLocaleDateString() + " "+ date.toLocaleTimeString()
   }
   get saleMember() {
     return this._saleMember ? this._saleMember : ''

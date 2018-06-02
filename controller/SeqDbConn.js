@@ -15,8 +15,8 @@ const createDbConn = function(name) {
 			max: 5,
 			min: 0,
 			idle: 10000
-		},
-		timezone: timezone
+		}
+		//timezone: timezone
 	})
 
 	sequelize

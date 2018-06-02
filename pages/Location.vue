@@ -14,7 +14,10 @@ export default {
 	},
 	computed:{
 		localtime:function(){
-			return new Date()
+			var nowtime = new Date()
+			var offset = new Date().getTimezoneOffset();
+			//return  nowtime.toLocaleString()
+			return  nowtime.getMonth()+1+"/"+nowtime.getDate()+" "+nowtime.getHours()+":"+nowtime.getMinutes()+" "+Intl.DateTimeFormat().resolvedOptions().timeZone
 		}
 	}
 }

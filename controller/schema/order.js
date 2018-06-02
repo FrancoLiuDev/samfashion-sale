@@ -88,6 +88,24 @@ var order_config_tbl = sequelize.define(
 			// get: function() {
 			// 	return moment.utc(this.getDataValue('createDate')).format('YYYY-MM-DD HH:mm')
 			// }
+		},
+		lastDate: {
+			type: Sequelize.DATE,
+			allowNull: true,
+			primaryKey: false
+			// get: function() {
+			// 	return moment.utc(this.getDataValue('createDate')).format('YYYY-MM-DD HH:mm')
+			// }
+		},
+		localDate:{
+			type: Sequelize.STRING,
+			allowNull: true,
+			primaryKey: false
+		},
+		lastlocalDate:{
+			type: Sequelize.STRING,
+			allowNull: true,
+			primaryKey: false
 		}
 	},
 	{
