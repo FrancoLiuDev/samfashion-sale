@@ -60,7 +60,8 @@ class OrderIiemInfo {
     return this._orderOther ? this._orderOther : ''
   }
   get orderPrice() {
-    return this._orderPrice ? JSON.parse("[" + this._orderPrice + "]") : ''
+    var priceArray = this._orderPrice.split(',')
+    return priceArray
   }
 
   set saleMember(val) {
