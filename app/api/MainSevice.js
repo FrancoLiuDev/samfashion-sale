@@ -72,13 +72,17 @@ function MainSevice(app) {
     twDate = appUtils.genTwDate()
     
     var now =  timeUtil.genTwDate()//
-    var dStart =  timeUtil.convertDateToTwDate(new Date('6'+"/"+'01'+"/2018 0:00:0:0"))//
-    var dEnd =  timeUtil.convertDateToTwDate(new Date('6'+"/"+'01'+"/2018 23:59:59:0"))
+    var sixoneDate = new Date('6'+"/"+'01'+"/2018 0:00:0:0")
+
+    var dStart =  timeUtil.convertUTCDateToTwDate(new Date('6'+"/"+'01'+"/2018 0:00:0:0"))//
+    var dEnd =  timeUtil.convertUTCDateToTwDate(new Date('6'+"/"+'01'+"/2018 23:59:59:0"))
      
-    
+    var nowtime = new Date()  
+           
     res.status(200).send({
-      between: [dStart.toLocaleString(), dEnd.toLocaleString()],
+      between: [dStart, dEnd],
       now:now.toLocaleString()
+
     } )
    
 
