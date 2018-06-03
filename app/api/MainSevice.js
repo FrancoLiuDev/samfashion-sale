@@ -81,7 +81,11 @@ function MainSevice(app) {
            
     res.status(200).send({
       between: [dStart, dEnd],
-      now:now.toLocaleString()
+      now:now.toLocaleString(),
+
+      sixoneDate:sixoneDate.getTime(),
+      nowtime:nowtime.getTime()
+
 
     } )
    
