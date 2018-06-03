@@ -20,7 +20,7 @@ module.exports = {
 	convertTwDateToUtcDate(date){
 		var localTime = date.getTime();
 		var localOffset = date.getTimezoneOffset() * 60000
-		var utc = localTime + 0
+		var utc = localTime + localOffset
 		var twDate = new Date(utc)
 		return twDate
 	} 
