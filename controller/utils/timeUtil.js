@@ -16,11 +16,12 @@ module.exports = {
 		var twtime = utc + 28800000
 		var twDate = new Date(twtime)
 		return twDate
-	},
+	}, 
 	convertTwDateToUtcDate(date){
 		var localTime = date.getTime();
 		var localOffset = date.getTimezoneOffset() * 60000
-		var utc = localTime + localOffset
+		var utc = localTime - localOffset
+		utc = utc - 28800000
 		var twDate = new Date(utc)
 		return twDate
 	} 
