@@ -74,8 +74,8 @@ function MainSevice(app) {
     var now =  timeUtil.genTwDate()//
     var sixoneDate = new Date('6'+"/"+'01'+"/2018 0:00:0:0")
 
-    var dStart =  timeUtil.convertUTCDateToTwDate(new Date('6'+"/"+'01'+"/2018 0:00:0:0"))//
-    var dEnd =  timeUtil.convertUTCDateToTwDate(new Date('6'+"/"+'01'+"/2018 23:59:59:0"))
+    var dStart =  timeUtil.convertTwDateToUtcDate(new Date('6'+"/"+'01'+"/2018 0:00:0:0"))//
+    var dEnd =  timeUtil.convertTwDateToUtcDate(new Date('6'+"/"+'01'+"/2018 23:59:59:0"))
      
     var nowtime = new Date()  
            
@@ -83,7 +83,7 @@ function MainSevice(app) {
       between: [dStart, dEnd],
       now:now.toLocaleString(),
 
-      sixoneDate:sixoneDate.getTime(),
+      sixoneDate:sixoneDate.toUTCString(),
       nowtime:nowtime.getTime()
 
 
