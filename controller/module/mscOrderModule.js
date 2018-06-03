@@ -58,7 +58,7 @@ class MscOrderModule extends MscModuleBase{
     var conditionCreateDate = null
 
     if (confition.month && confition.date){
-      var dStart =  timeUtil.convertDateToTwDate(new Date(confition.month+"/"+confition.date+"/2018 0:00:0:0"))
+      var dStart =  timeUtil.convertDateToTwDate(new Date(confition.month+"/"+confition.date+"/2018 0:00:0:0"))//
       var dEnd =  timeUtil.convertDateToTwDate(new Date(confition.month+"/"+confition.date+"/2018 23:59:59:0"))
       wherequery['createDate'] = {
         $between: [dStart, dEnd]
