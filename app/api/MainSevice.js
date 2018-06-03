@@ -71,12 +71,14 @@ function MainSevice(app) {
     console.log('time')
     twDate = appUtils.genTwDate()
     
+    var now =  timeUtil.genTwDate()//
     var dStart =  timeUtil.convertDateToTwDate(new Date('6'+"/"+'01'+"/2018 0:00:0:0"))//
     var dEnd =  timeUtil.convertDateToTwDate(new Date('6'+"/"+'01'+"/2018 23:59:59:0"))
      
     
     res.status(200).send({
-      between: [dStart, dEnd]
+      between: [dStart.toLocaleString(), dEnd.toLocaleString()],
+      now:now.toLocaleString()
     } )
    
 
