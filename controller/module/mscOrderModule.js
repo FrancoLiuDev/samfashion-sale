@@ -1,7 +1,7 @@
 const OrderSchema = require(__schema + '/order')
 const Serializer = require('sequelize-to-json')
 const MscModuleBase = require('./mscModuleBase')
-const appUtils = require(__utils + '/timeUtil')
+const timeUtil = require(__utils + '/timeUtil')
 
 let orderSchema = OrderSchema.mainOrder()
 let configTable = OrderSchema.configTable()
@@ -58,12 +58,15 @@ class MscOrderModule extends MscModuleBase{
     var conditionCreateDate = null
 
     if (confition.month && confition.date){
-      var dStart = new Date(confition.month+"/"+confition.date+"/2018 0:00:0:0")
-      var dEnd = new Date(confition.month+"/"+confition.date +1+"/2018 0:00:0:0")
+      var dStart =  timeUtil.convertDateToTwDate(new Date(confition.month+"/"+confition.date+"/2018 0:00:0:0"))
+      var dEnd =  timeUtil.convertDateToTwDate(new Date(confition.month+"/"+confition.date+"/2018 23:59:59:0"))
       wherequery['createDate'] = {
         $between: [dStart, dEnd]
       }
+      console.log('dStart',dStart.toLocaleString())
+      console.log('dEnd',dEnd.toLocaleString())
     }
+
 
     if (confition.order){
       wherequery['orderDateNumber'] = confition.order
@@ -148,8 +151,8 @@ class MscOrderModule extends MscModuleBase{
     let self = this
     return new Promise(async function (resolve, reject) {
       var configData = await self.readOrderConfig()
-      var twDate = appUtils.genTwDate()
-      var ordertime =  appUtils.convertDateToTwDate(new Date(configData.countDate))
+      var twDate = timeUtil.genTwDate()
+      var ordertime =  timeUtil.convertDateToTwDate(new Date(configData.countDate))
       console.log('configData',configData)
       console.log('time',twDate,ordertime)
       console.log('year',twDate.getFullYear(),ordertime.getFullYear())
