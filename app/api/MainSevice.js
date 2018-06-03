@@ -1,7 +1,7 @@
 const MscOrderController = require(__controllers + '/msc/MscOrderController')
 const mscOrderController = new MscOrderController()
 const appUtils = require(__utils + '/timeUtil')
-
+const timeUtil = require(__utils + '/timeUtil')
 function MainSevice(app) {
 
   app.post('/msc/api/v1/order/', async function (req, res) {
@@ -70,24 +70,15 @@ function MainSevice(app) {
   app.get('/msc/api/v1/timezone', async function (req, res) {
     console.log('time')
     twDate = appUtils.genTwDate()
-    // var nowtime = new Date()
-    // var localTime = nowtime.getTime();
-    // var localOffset = nowtime.getTimezoneOffset() * 60000
-    // var utc = localTime + localOffset 
-    // var tortiem = utc + 28800000
-    // var torDate = new Date(tortiem)
-    // //return  nowtime.toLocaleString()
-    // var twdate =  torDate.getMonth() + 1 + "/" + torDate.getDate() + " " + torDate.getHours() + ":" + torDate.getMinutes() 
     
-    // res.status(200).send({
-    //   offset:localOffset,
+    var dStart =  timeUtil.convertDateToTwDate(new Date('6'+"/"+'01'+"/2018 0:00:0:0"))//
+    var dEnd =  timeUtil.convertDateToTwDate(new Date('6'+"/"+'01'+"/2018 23:59:59:0"))
      
-    //   twdate:twdate,
-
-
-    // } )
-    res.status(200).send(twDate.toLocaleString() )
-    //res.status(200).send(twDate.getMonth() + 1 + "/" + twDate.getDate() + " " + twDate.getHours() + ":" + twDate.getMinutes() )
+    
+    res.status(200).send({
+      between: [dStart, dEnd]
+    } )
+   
 
   })
 
